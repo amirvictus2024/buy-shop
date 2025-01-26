@@ -260,6 +260,26 @@
   transform: rotate(360deg) scale(1.2);
   filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.4));
 }
+
+.head ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+.head ul a {
+    text-decoration: none;
+    font-size: 16px;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.head ul a:hover {
+    color: #007bff;
+}
     </style>
 </head>
 <body>
@@ -298,89 +318,130 @@
         <a href="https://wa.me/YourWhatsAppNumber" target="_blank">
             <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="whatsapp-logo">
         </a>
+        <!-- بخش ها -->
+        <div class="head">
+            <ul>
+                <a href="index.html"><li>صفحه اصلی</li></a>
+                <a href="rule.html" target="_blank"><li>قوانین</li></a>
+                <a href="https://t.me/Minimalcraft" target="_blank">
+                    <li>پشتیبانی</li>
+                </a>
+            </ul>
+        </div>
     </div>
     
 
     <script>
-        const products = [
-            {
-                title: 'DNS اختصاصی',
-                description: 'دسترسی سریع و امن به بازی‌های آنلاین با پینگ پایین و بدون قطعی، همراه با DNS اختصاصی برای بهبود عملکرد و کاهش تأخیر.',
+const products = [
+    {
+        title: 'DNS اختصاصی',
+        description: 'تجربه‌ای سریع، امن و پایدار برای بازی‌های آنلاین با پینگ پایین و بدون قطعی. با DNS اختصاصی، عملکرد بهینه و کاهش چشمگیر تأخیر را تجربه کنید. این سرویس به‌طور ویژه برای گیمرها طراحی شده است تا اتصال مطمئن، بازی روان و بدون اختلال را تضمین کند.',
+        locations: [
+            { 
+                name: 'لوکیشن شماره یک', 
                 price: 59000,
-                paymentLink: 'https://t.me/Minimalcraft',
-                image: 'dns.png',
-                locations: ['لوکیشن شماره یک', 'لوکیشین شماره دو', 'لوکیشین شماره سه']
+                paymentLink: 'https://t.me/Minimalcraft' 
             },
-            {
-                title: 'کانفیگ وایرگارد',
-                description: 'با کانفیگ‌های وایرگارد ما، شما تجربه‌ای بی‌نظیر از پینگ ثابت و سرعت بالا رو در بازی‌ها و برنامه‌های آنلاین خواهید داشت. این کانفیگ‌ها تضمین می‌کنن که شما بدون هیچگونه قطعی و افت سرعت، بهترین عملکرد رو روی اینترنت داشته باشید.',
-                price: 118000,
-                paymentLink: 'https://t.me/Minimalcraft',
-                image: 'wire.png',
-                locations: ['لوکیشن شماره یک']
+            { 
+                name: 'لوکیشین شماره دو', 
+                price: 62000,
+                paymentLink: 'https://t.me/Minimalcraft' 
             },
-            {
-                title: 'سرور اختصاصی V2Ray',
-                description: 'این کانفیگ‌ها به صورت مولتی‌سرور ارائه می‌شوند، با سرعت بالا و بدون قطعی، که به طور کامل با تمامی انواع اینترنت سازگار است و روی تمام دستگاه‌ها و گوشی‌ها به راحتی کار می‌کند.',
-                price: 65000,
-                paymentLink: 'https://t.me/Minimalcraft',
-                image: 'vpn.png',
-                locations: ['سرور مولتی 1 (30 گیگ 31 روز)']
-            },
-            {
-                title: 'پنل سایتی X-Ping',
-                description: 'این پنل تولید کننده کانفیگ وایرگارد به صورت نامحدود و دی ان اس های نسل 4 و 6 میباشد که هم برای استفاده خودتون هم برای کسب درآمد شما میتونه مورد استفاده قرار بگیره.',
-                price: 398000,
-                paymentLink: 'https://t.me/Minimalcraft',
-                image: 'xping.png',
-                locations: ['دریافت فایل ZiP']
+            { 
+                name: 'لوکیشین شماره سه', 
+                price: 57000,
+                paymentLink: 'https://t.me/Minimalcraft' 
             }
-        ];
-    
-        const container = document.querySelector('.container');
-        
-        products.forEach((product, index) => {
-            const card = document.createElement('div');
-            card.className = 'card';
-            card.style.animationDelay = `${index * 0.1}s`;
-    
-            card.innerHTML = `
-                <img src="${product.image}" alt="${product.title}" class="product-image">
-                <div class="card-content">
-                    <h3 class="title">${product.title}</h3>
-                    <p class="description">${product.description}</p>
-                    <div class="price">${product.price.toLocaleString()} تومان</div>
-                </div>
-                <div class="card-actions">
-                    ${product.locations ? `
-                        <div class="locations">
-                            <label for="location-${index}">لوکیشن:</label>
-                            <select id="location-${index}">
-                                ${product.locations.map(location => `<option value="${location}">${location}</option>`).join('')}
-                            </select>
-                        </div>
-                    ` : ''}
-                    <a href="${product.paymentLink}" class="buy-btn">
-                        پرداخت و دریافت محصول
-                    </a>
-                </div>
-            `;
-    
-            container.appendChild(card);
-        });
+        ],
+        image: 'dns.png'
+    },
+    {
+        title: 'کانفیگ وایرگارد',
+        description: 'با کانفیگ‌های وایرگارد ما، شما تجربه‌ای بی‌نظیر از پینگ ثابت و سرعت بالا رو در بازی‌ها و برنامه‌های آنلاین خواهید داشت. این کانفیگ‌ها تضمین می‌کنن که شما بدون هیچگونه قطعی و افت سرعت، بهترین عملکرد رو روی اینترنت داشته باشید.',
+        locations: [
+            { 
+                name: 'لوکیشن شماره یک', 
+                price: 118000,
+                paymentLink: 'https://t.me/Minimalcraft' 
+            }
+        ],
+        image: 'wire.png'
+    },
+    {
+        title: 'سرور اختصاصی V2Ray',
+        description: 'این کانفیگ‌ها به صورت مولتی‌سرور ارائه می‌شوند، با سرعت بالا و بدون قطعی، که به طور کامل با تمامی انواع اینترنت سازگار است و روی تمام دستگاه‌ها و گوشی‌ها به راحتی کار می‌کند.',
+        locations: [
+            { 
+                name: 'سرور مولتی 1 (30 گیگ 31 روز)', 
+                price: 65000,
+                paymentLink: 'https://t.me/Minimalcraft' 
+            }
+        ],
+        image: 'vpn.png'
+    },
+    {
+        title: 'پنل سایتی X-Ping',
+        description: 'این پنل تولید کننده کانفیگ وایرگارد به صورت نامحدود و دی ان اس های نسل 4 و 6 میباشد که هم برای استفاده خودتون هم برای کسب درآمد شما میتونه مورد استفاده قرار بگیره.',
+        locations: [
+            { 
+                name: 'دریافت فایل ZiP', 
+                price: 398000,
+                paymentLink: 'https://t.me/Minimalcraft' 
+            }
+        ],
+        image: 'x-ping.png'
+    }
+];
 
-        // Prevent opening DevTools (optional)
-(function() {
-    document.addEventListener('contextmenu', function(event) {
-        event.preventDefault();
+const container = document.querySelector('.container');
+
+products.forEach((product, index) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.style.animationDelay = `${index * 0.1}s`;
+
+    const defaultLocation = product.locations[0];
+    const hasMultipleLocations = product.locations.length > 1;
+
+    card.innerHTML = `
+        <img src="${product.image}" alt="${product.title}" class="product-image">
+        <div class="card-content">
+            <h3 class="title">${product.title}</h3>
+            <p class="description">${product.description}</p>
+            <div class="price">${defaultLocation.price.toLocaleString()} تومان</div>
+        </div>
+        <div class="card-actions">
+            <div class="locations">
+                <label for="location-${index}">لوکیشن:</label>
+                <select id="location-${index}">
+                    ${product.locations.map(location => 
+                        `<option value="${location.name}" data-link="${location.paymentLink}" data-price="${location.price}">
+                            ${location.name}
+                        </option>`
+                    ).join('')}
+                </select>
+            </div>
+            <a href="${defaultLocation.paymentLink}" class="buy-btn" id="payment-link-${index}">
+                پرداخت و دریافت محصول
+            </a>
+        </div>
+    `;
+
+    const locationSelect = card.querySelector(`#location-${index}`);
+    const paymentLink = card.querySelector(`#payment-link-${index}`);
+    const priceElement = card.querySelector('.price');
+
+    locationSelect.addEventListener('change', (event) => {
+        const selectedOption = event.target.selectedOptions[0];
+        const newLink = selectedOption.getAttribute('data-link');
+        const newPrice = selectedOption.getAttribute('data-price');
+
+        paymentLink.href = newLink;
+        priceElement.textContent = `${parseInt(newPrice).toLocaleString()} تومان`;
     });
 
-    document.onkeydown = function(event) {
-        if (event.keyCode === 123 || (event.ctrlKey && event.shiftKey && event.keyCode === 73)) {
-            event.preventDefault();
-        }
-    };
-})();
+    container.appendChild(card);
+});
     </script>
 </body>
 </html>
