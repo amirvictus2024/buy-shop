@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قوانین و مقررات خدمات</title>
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Vazirmatn', sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #121212, #1e1e1e);
+            color: #e5e7eb;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: linear-gradient(145deg, #1e1e1e, #121212);
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            box-shadow: 
+                0 15px 30px rgba(0,0,0,0.4),
+                0 10px 20px rgba(0,0,0,0.3);
+            border: 2px solid rgba(255,255,255,0.05);
+            position: relative;
+            overflow: hidden;
+            transform: perspective(1000px) rotateX(5deg);
+            animation: subtle-float 4s ease-in-out infinite alternate;
+        }
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg, 
+                transparent, 
+                rgba(56, 189, 248, 0.1), 
+                transparent
+            );
+            transform: rotate(-45deg);
+            z-index: -1;
+        }
+        .section-title {
+            color: #38bdf8;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            border-bottom: 3px solid #38bdf8;
+            padding-bottom: 0.75rem;
+            position: relative;
+            text-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 50px;
+            height: 4px;
+            background: #38bdf8;
+            border-radius: 10px;
+        }
+        .section-content {
+            color: #b0b9c6;
+            margin-bottom: 2rem;
+            background: rgba(30, 30, 30, 0.5);
+            padding: 1.5rem;
+            border-radius: 1rem;
+            transition: all 0.3s ease;
+        }
+        .section-content:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .section-content ul {
+            margin-right: 2rem;
+            list-style-type: none;
+            position: relative;
+        }
+        .section-content ul li {
+            position: relative;
+            padding-right: 20px;
+            margin-bottom: 0.75rem;
+        }
+        .section-content ul li::before {
+            content: '•';
+            color: #38bdf8;
+            position: absolute;
+            right: 0;
+            top: 0;
+            font-size: 1.5rem;
+        }
+        @keyframes subtle-float {
+            0% { transform: perspective(1000px) rotateX(5deg) translateY(0); }
+            100% { transform: perspective(1000px) rotateX(5deg) translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div>
+            <h1 class="section-title">قوانین کلی خدمات</h1>
+            <div class="section-content">
+                <ul>
+                    <li>مدت زمان تمامی سرویس‌ها دقیقاً یک ماه (۳۰ روز) می‌باشد.</li>
+                    <li>هر سرویس ضمانت یکبار تعویض را دارا میباشد.</li>
+                </ul>
+            </div>
+        </div>
+    
+        <div>
+            <h2 class="section-title">محدودیت‌های مسئولیت</h2>
+            <div class="section-content">
+                <ul>
+                    <li>مسئولیت سازگاری تجهیزات و دستگاه‌های خریدار با تنظیمات سرویس بر عهده خریدار است.</li>
+                    <li>تمامی سرویس‌ها پیش از ارائه با انواع اینترنت‌ها تست شده‌اند؛ با این حال، در صورتی که سرویس با اینترنت خریدار سازگار نباشد، ارائه‌دهنده (فروشنده) هیچ‌گونه مسئولیتی نخواهد داشت.</li>
+                    <li>ارائه‌دهنده هیچ‌گونه مسئولیتی در قبال اختلالات ناشی از اینترنت یا شبکه شخص ثالث ندارد.</li>
+                    <li>در صورت بروز مشکل، مسئولیت اطلاع‌رسانی به پشتیبانی بر عهده خریدار می‌باشد.</li>
+                </ul>
+            </div>
+        </div>
+    
+        <div>
+            <h2 class="section-title">شرایط استفاده</h2>
+            <div class="section-content">
+                <ul>
+                    <li>استفاده از سرویس به منزله پذیرش کامل کلیه قوانین و شرایط ارائه‌شده می‌باشد.</li>
+                    <li>تغییرات در قوانین و شرایط استفاده، بدون اطلاع قبلی امکان‌پذیر است و نسخه به‌روز قوانین همواره ملاک عمل خواهد بود.</li>
+                    <li>هرگونه استفاده غیرمجاز یا نقض قوانین منجر به قطع فوری سرویس خواهد شد.</li>
+                </ul>
+            </div>
+        </div>
+    
+        <div>
+            <h2 class="section-title">عودت وجه و خسارت</h2>
+            <div class="section-content">
+                <ul>
+                    <li>بازگشت وجه تحت هیچ شرایطی امکان‌پذیر نیست، مگر در مواردی که خلاف آن به‌صراحت ذکر شده باشد.</li>
+                    <li>ارائه‌دهنده در قبال خسارات غیرمستقیم یا ناشی از استفاده نادرست مسئولیتی نخواهد داشت.</li>
+                </ul>
+            </div>
+        </div>
+    </div>    
+</body>
+</html>
