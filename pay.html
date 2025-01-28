@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Vazirmatn', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+            color: #e5e7eb;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 400px;
+            aspect-ratio: 1.586;
+            background: rgba(24, 24, 24, 0.7);
+            border-radius: 20px;
+            padding: 25px;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 
+                0 15px 35px rgba(0, 0, 0, 0.4),
+                0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 0% 0%, rgba(0, 149, 255, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 100% 100%, rgba(0, 149, 255, 0.3) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .wave-group {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+            opacity: 0.5;
+            overflow: hidden;
+        }
+
+        .wave {
+            position: absolute;
+            background: linear-gradient(45deg, rgba(0, 149, 255, 0.2), rgba(0, 149, 255, 0));
+            border-radius: 40%;
+            animation: wave 8s infinite linear;
+            transform-origin: 50% 48%;
+            z-index: 1;
+        }
+
+        .wave-1 {
+            width: 200%;
+            height: 200%;
+            left: -50%;
+            top: -100%;
+        }
+
+        .wave-2 {
+            width: 180%;
+            height: 180%;
+            left: -40%;
+            top: -90%;
+            animation-delay: 0.2s;
+            animation-duration: 10s;
+        }
+
+        @keyframes wave {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-chip {
+            width: 45px;
+            height: 35px;
+            border-radius: 5px;
+            position: relative;
+            margin-bottom: 50px;
+        }
+
+        .card-chip::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 80%;
+            background: 
+                linear-gradient(90deg, 
+                    transparent 25%, 
+                    rgba(0, 0, 0, 0.1) 25%, 
+                    rgba(0, 0, 0, 0.1) 50%, 
+                    transparent 50%,
+                    transparent 75%,
+                    rgba(0, 0, 0, 0.1) 75%);
+            background-size: 8px 100%;
+        }
+
+        .card-logo {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+        }
+
+        .card-number {
+            font-family: monospace;
+            font-size: 1.65rem;
+            color: rgba(255, 255, 255, 0.95);
+            letter-spacing: 2px;
+            text-align: left;
+            margin-top: auto;
+            margin-bottom: 25px;
+            cursor: pointer;
+            direction: ltr;
+            transition: color 0.3s ease;
+        }
+
+        .card-number:hover {
+            color: #fff;
+        }
+
+        .card-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-top: auto;
+        }
+
+        .card-holder {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .card-holder .label {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 4px;
+        }
+
+        .card-valid {
+            text-align: right;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .card-valid .label {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 4px;
+        }
+
+        .telegram-section {
+            width: 100%;
+            max-width: 400px;
+            background: rgba(24, 24, 24, 0.7);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .telegram-btn {
+            background: linear-gradient(135deg, #2563eb, #1e40af);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .telegram-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+        }
+
+        .captcha-container {
+            display: none;
+            margin-top: 1rem;
+        }
+
+        .captcha-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-size: 1.5rem;
+            font-family: monospace;
+            letter-spacing: 3px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .captcha-input {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .captcha-input:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+        .verify-btn {
+            background: #22c55e;
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .verify-btn:hover {
+            background: #16a34a;
+            transform: translateY(-2px);
+        }
+
+        .copy-success {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(34, 197, 94, 0.9);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            display: none;
+            animation: fadeInOut 2s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translate(-50%, -20px); }
+            15% { opacity: 1; transform: translate(-50%, 0); }
+            85% { opacity: 1; transform: translate(-50%, 0); }
+            100% { opacity: 0; transform: translate(-50%, -20px); }
+        }
+
+        .warning-container {
+      font-family: Tahoma, Arial, sans-serif;
+      background-color: #fff3cd;
+      border: 2px solid #ffeeba;
+      border-right: 6px solid #ffc107;
+      border-radius: 8px;
+      padding: 20px;
+      width: 100%;
+      max-width: 500px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      animation: slideIn 0.5s ease-out, pulse 2s infinite;
+    }
+
+    .warning-title {
+      color: #ed3806;
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .warning-text {
+      color: #1a1a1a;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .warning-icon {
+      color: #ffff00;
+      font-size: 24px;
+      animation: shake 1s infinite;
+      display: inline-block;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateY(-20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: rotate(0deg); }
+      5%, 15% { transform: rotate(-5deg); }
+      10%, 20% { transform: rotate(5deg); }
+      25% { transform: rotate(0deg); }
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+      50% { box-shadow: 0 4px 8px rgba(0,0,0,0.15); }
+      100% { box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    }
+
+    @media screen and (max-width: 600px) {
+      .warning-container {
+        padding: 15px;
+        margin: 10px;
+      }
+
+      .warning-title {
+        font-size: 16px;
+      }
+
+      .warning-text {
+        font-size: 14px;
+      }
+    }
+
+    @media screen and (max-width: 400px) {
+      .warning-container {
+        padding: 12px;
+        margin: 5px;
+      }
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="wave-group">
+                <div class="wave wave-1"></div>
+                <div class="wave wave-2"></div>
+            </div>
+            <div class="card-content">
+                <div class="card-logo">
+                    <img src="blu.svg" alt="blu bank">
+                </div>
+                <div class="card-chip"></div>
+                <div class="card-number" onclick="copyCardNumber()">6219 8619 4308 4037</div>
+                <div class="card-details">
+                    <div class="card-holder">
+                        <div class="label">به نام</div>
+                        <div>امیرحسین سیاهبالایی</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="warning-container">
+            <div class="warning-title">
+              ⚠️ <span>هشدار مهم</span>
+            </div>
+            <p class="warning-text">
+              پرداخت باید دقیقاً مطابق مبلغ اعلام‌شده باشد. واریز مبلغ متفاوت، تراکنش را نامعتبر کرده و مسئولیت آن بر عهده پرداخت‌کننده است.
+            </p>
+          </div>
+          
+
+        <div class="telegram-section">
+            <button class="telegram-btn" onclick="showCaptcha()">ارسال فیش واریزی</button>
+            <div class="captcha-container">
+                <div class="captcha-box"></div>
+                <input type="text" class="captcha-input" placeholder="کد را وارد کنید">
+                <button class="verify-btn" onclick="verifyCaptcha()">تایید و ورود به تلگرام</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="copy-success">شماره کارت کپی شد ✓</div>
+
+    <script>
+        function copyCardNumber() {
+            const cardNumber = "6219861943084037";
+            navigator.clipboard.writeText(cardNumber).then(() => {
+                const successMessage = document.querySelector('.copy-success');
+                successMessage.style.display = 'block';
+                setTimeout(() => {
+                    successMessage.style.display = 'none';
+                }, 2000);
+            });
+        }
+
+        function generateCaptcha() {
+            return Math.floor(1000 + Math.random() * 9000).toString();
+        }
+
+        let currentCaptcha = '';
+
+        function showCaptcha() {
+            const captchaContainer = document.querySelector('.captcha-container');
+            captchaContainer.style.display = 'block';
+            currentCaptcha = generateCaptcha();
+            document.querySelector('.captcha-box').textContent = currentCaptcha;
+        }
+
+        function verifyCaptcha() {
+            const userInput = document.querySelector('.captcha-input').value;
+            if (userInput === currentCaptcha) {
+                window.location.href = 'https://t.me/Minimalcraft'; // Replace with your Telegram username
+            } else {
+                alert('کد وارد شده صحیح نیست. لطفا مجددا تلاش کنید.');
+                currentCaptcha = generateCaptcha();
+                document.querySelector('.captcha-box').textContent = currentCaptcha;
+                document.querySelector('.captcha-input').value = '';
+            }
+        }
+    </script>
+</body>
+</html>
