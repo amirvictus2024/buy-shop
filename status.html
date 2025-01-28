@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>وضعیت سرورها</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        @font-face {
+            font-family: 'Vazirmatn';
+            src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/fonts/webfonts/Vazirmatn-Regular.woff2') format('woff2');
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: 'Vazirmatn';
+            src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/fonts/webfonts/Vazirmatn-Bold.woff2') format('woff2');
+            font-weight: 700;
+        }
+
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background-color: #0a0a0a;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ffffff;
+        }
+
+        .status-container {
+            width: 90%;
+            max-width: 800px;
+            background: #141414;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            padding: 30px;
+            border: 1px solid #2a2a2a;
+        }
+
+        .status-header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .status-header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0;
+            color: #fff;
+        }
+
+        .section {
+            background: #1a1a1a;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+            border: 1px solid #2a2a2a;
+        }
+
+        .section:hover {
+            transform: translateY(-2px);
+            background: #1f1f1f;
+        }
+
+        .section-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .section-logo img {
+            width: 32px;
+            height: 32px;
+            margin-left: 15px;
+        }
+
+        .section-logo h2 {
+            font-size: 20px;
+            font-weight: 600;
+            margin: 0;
+            color: #fff;
+        }
+
+        .location-group {
+            background: #212121;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #2a2a2a;
+            overflow: hidden;
+        }
+
+        .location-header {
+            padding: 12px 20px;
+            background: #262626;
+            font-weight: 600;
+            color: #e0e0e0;
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        .server-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .server-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        .server-item:last-child {
+            border-bottom: none;
+        }
+
+        .server-item:hover {
+            background: #262626;
+        }
+
+        .server-item img {
+            width: 32px;
+            height: 20px;
+            border-radius: 4px;
+            object-fit: cover;
+        }
+
+        .server-name {
+            flex: 1;
+            margin-right: 15px;
+            font-size: 16px;
+            font-weight: 500;
+            color: #e0e0e0;
+        }
+
+        .server-status {
+            font-weight: 600;
+            font-size: 14px;
+            padding: 6px 12px;
+            border-radius: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .active {
+            color: #2ac546;
+            background: rgba(46, 204, 113, 0.1);
+            border: 1px solid rgba(46, 204, 113, 0.2);
+        }
+
+        .inactive {
+            color: #c62828;
+            background: rgba(198, 40, 40, 0.1);
+            border: 1px solid rgba(198, 40, 40, 0.2);
+        }
+
+
+        .menu {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            gap: 15px;
+        }
+
+        .menu-item {
+            padding: 10px 20px;
+            background: #212121;
+            border-radius: 8px;
+            color: #e0e0e0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid #2a2a2a;
+        }
+
+        .menu-item:hover {
+            background: #262626;
+        }
+
+        .menu-item.active {
+            background: #3a3a3a;
+            color: #fff;
+        }
+
+        @media (max-width: 480px) {
+            .status-container {
+                padding: 20px;
+            }
+
+            .section {
+                padding: 15px;
+            }
+
+            .server-item {
+                padding: 12px;
+            }
+
+            .server-name {
+                font-size: 14px;
+            }
+
+            .server-status {
+                font-size: 12px;
+                padding: 4px 8px;
+            }
+
+            .menu {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="status-container">
+        <div class="status-header">
+            <h1>وضعیت سرورها</h1>
+        </div>
+
+        <div class="menu">
+            <div class="menu-item active">همه سرورها</div>
+            <div class="menu-item">سرورهای فعال</div>
+            <div class="menu-item">سرورهای غیرفعال</div>
+        </div>
+
+        <div class="section">
+            <div class="section-logo">
+                <img src="dns1.svg" alt="DNS logo">
+                <h2>سرورهای DNS</h2>
+            </div>
+
+            <div class="location-group">
+                <div class="location-header">لوکیشن شماره ۱</div>
+                <ul class="server-list" id="dnsListLoc1">
+                    <!-- DNS Servers Location 1 will be loaded here -->
+                </ul>
+            </div>
+
+            <div class="location-group">
+                <div class="location-header">لوکیشن شماره ۲</div>
+                <ul class="server-list" id="dnsListLoc2">
+                    <!-- DNS Servers Location 2 will be loaded here -->
+                </ul>
+            </div>
+
+            <div class="location-group">
+                <div class="location-header">لوکیشن شماره ۳</div>
+                <ul class="server-list" id="dnsListLoc3">
+                    <!-- DNS Servers Location 3 will be loaded here -->
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-logo">
+                <img src="wire1.svg" alt="WireGuard logo">
+                <h2>سرورهای WireGuard</h2>
+            </div>
+
+            <div class="location-group">
+                <div class="location-header">لوکیشن شماره ۱</div>
+                <ul class="server-list" id="wireguardListLoc1">
+                    <!-- WireGuard Servers Location 1 will be loaded here -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const dnsServersLoc1 = [
+            { location: "اسپانیا", status: "inactive", flag: "https://flagcdn.com/w320/es.png" },
+            { location: "فنلاند", status: "inactive", flag: "https://flagcdn.com/w320/fi.png" },
+            { location: "امارات", status: "inactive", flag: "https://flagcdn.com/w320/ae.png" }
+        ];
+
+        const dnsServersLoc2 = [
+            { location: "ترکیه", status: "inactive", flag: "https://flagcdn.com/w320/tr.png" },
+            { location: "امریکا", status: "inactive", flag: "https://flagcdn.com/w320/us.png" },
+            { location: "سوئد", status: "inactive", flag: "https://flagcdn.com/w320/se.png" }
+        ];
+
+        const dnsServersLoc3 = [
+            { location: "آلمان", status: "active", flag: "https://flagcdn.com/w320/de.png" },
+            { location: "مکزیک", status: "inactive", flag: "https://flagcdn.com/w320/mx.png" }
+        ];
+
+        const wireguardServersLoc1 = [
+            { location: "آلمان + ترکیه", status: "active", flag: "https://flagcdn.com/w320/aq.png" }
+        ];
+
+        function populateServerList(listId, servers) {
+            const serverList = document.getElementById(listId);
+            servers.forEach(server => {
+                const serverItem = document.createElement("li");
+                serverItem.className = "server-item";
+
+                serverItem.innerHTML = `
+                    <img src="${server.flag}" alt="${server.location} flag">
+                    <div class="server-name">${server.location}</div>
+                    <div class="server-status ${server.status}">${server.status === "active" ? "فعال" : "غیرفعال"}</div>
+                `;
+
+                serverList.appendChild(serverItem);
+            });
+        }
+
+        // Populate all server lists
+        populateServerList("dnsListLoc1", dnsServersLoc1);
+        populateServerList("dnsListLoc2", dnsServersLoc2);
+        populateServerList("dnsListLoc3", dnsServersLoc3);
+        populateServerList("wireguardListLoc1", wireguardServersLoc1);
+
+        // گرفتن آیتم‌های منو
+        const menuItems = document.querySelectorAll('.menu-item');
+
+        // افزودن رویداد کلیک به آیتم‌های منو
+        menuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                // فعال کردن آیتم منو
+                menuItems.forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+
+                // فیلتر کردن سرورها بر اساس متن منو
+                const filterText = item.textContent.trim();
+                filterServerList(filterText);
+            });
+        });
+
+        // تابع فیلتر کردن سرورها
+        function filterServerList(filterBy) {
+            const serverItems = document.querySelectorAll('.server-item');
+
+            serverItems.forEach(item => {
+                const serverStatus = item.querySelector('.server-status').textContent.trim();
+
+                // نمایش یا پنهان کردن آیتم‌ها
+                if (filterBy === 'همه سرورها') {
+                    item.style.display = 'flex';
+                } else if (filterBy === 'سرورهای فعال' && serverStatus === 'فعال') {
+                    item.style.display = 'flex';
+                } else if (filterBy === 'سرورهای غیرفعال' && serverStatus === 'غیرفعال') {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
