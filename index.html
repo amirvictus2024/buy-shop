@@ -280,6 +280,72 @@
 .head ul a:hover {
     color: #007bff;
 }
+
+@media (max-width: 768px) {
+    .footer {
+        display: flex;
+        flex-direction: column; /* آیتم‌ها را زیر هم قرار می‌دهد */
+        align-items: center; /* وسط‌چین کردن آیتم‌ها (اختیاری) */
+        gap: 10px; /* فاصله بین آیتم‌ها (اختیاری) */
+    }
+}
+
+
+
+.dns-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            background: rgba(24, 24, 24, 0.9);
+            border-radius: 0.5rem;
+            margin-bottom: 0.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .dns-item:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .dns-address {
+            font-family: monospace;
+            color: #e5e7eb;
+        }
+
+        .copy-btn {
+            background: none;
+            border: none;
+            color: #94a3b8;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #e5e7eb;
+        }
+
+        .copy-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .copied {
+            color: #22c55e;
+        }
     </style>
 </head>
 <body>
@@ -329,9 +395,73 @@
             </ul>
         </div>
     </div>
+
+    <div class="container">
+        <div class="card">
+            <h3 class="title">الکترو</h3>
+            <div class="dns-list">
+                <div class="dns-item">
+                    <span class="dns-address">78.15.42.100</span>
+                    <button class="copy-btn" onclick="copyDNS('78.15.42.100', this)">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="dns-item">
+                    <span class="dns-address">78.157.42.101</span>
+                    <button class="copy-btn" onclick="copyDNS('78.157.42.101', this)">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <h3 class="title">رادار</h3>
+            <div class="dns-list">
+                <div class="dns-item">
+                    <span class="dns-address">10.202.10.10</span>
+                    <button class="copy-btn" onclick="copyDNS('10.202.10.10', this)">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="dns-item">
+                    <span class="dns-address">10.202.10.11</span>
+                    <button class="copy-btn" onclick="copyDNS('10.202.10.11', this)">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
     
 
     <script>
+        function copyDNS(text, button) {
+            navigator.clipboard.writeText(text).then(() => {
+                const originalHTML = button.innerHTML;
+                button.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                `;
+                button.classList.add('copied');
+                
+                setTimeout(() => {
+                    button.innerHTML = originalHTML;
+                    button.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+            });
+        }
+
 const products = [
     {
         title: 'DNS اختصاصی',
@@ -389,7 +519,7 @@ const products = [
                 paymentLink: 'https://t.me/Minimalcraft' 
             }
         ],
-        image: 'x-ping.png'
+        image: 'xping.png'
     }
 ];
 
